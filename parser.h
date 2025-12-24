@@ -1,7 +1,20 @@
-#include "shell.h"
+#ifndef PARSER_H
+#define PARSER_H
 
-int main() {
-    Shell shell;
-    shell.run();
-    return 0;
-}
+#include <string>
+#include <vector>
+
+struct Command {
+    std::vector<std::string> args;
+    std::string inputFile;
+    std::string outputFile;
+};
+
+struct ParsedLine {
+    std::vector<Command> pipeline;
+    bool background = false;
+};
+
+ParsedLine parseLine(const std::string& line);
+
+#endif
